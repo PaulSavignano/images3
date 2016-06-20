@@ -1,11 +1,14 @@
 import React from 'react'
-
 import ImageDetail from './image_detail'
 
-const ImageList = () => {
+const ImageList = (props) => {
+  const validImages = props.images.filter((image) => !image.is_album)
+  const RenderedImages = validImages.map((image) => {
+    return <ImageDetail image={image} key={image.title} />
+  })
   return (
-    <ul>
-      <ImageDetail />
+    <ul className="media-list list-group">
+      {RenderedImages}
     </ul>
   )
 }
